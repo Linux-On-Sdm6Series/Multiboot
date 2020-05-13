@@ -24,7 +24,6 @@
 # components.
 
 # Architecture
-
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -52,7 +51,7 @@ BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1
 BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=1 androidboot.configfs=true
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a800000.dwc3
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive printk.devkmsg=on
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -98,51 +97,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 
 # MultiRom
-TARGET_RECOVERY_IS_MULTIROM := true
-#MR_NO_KEXEC := 2
-MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
-#MR_CONTINUOUS_FB_UPDATE := true
-#MR_DPI := xhdpi
-#MR_DPI_FONT := 410
-#MR_USE_MROM_FSTAB := true
-#MR_FSTAB := device/xiaomi/whyred/recovery.fstab
-#MR_INPUT_TYPE := type_b
-#MR_INIT_DEVICES := device/xiaomi/whyred/multirom/mr_init_devices.c
-#MR_KEXEC_MEM_MIN := 0x00200000
-MR_KEXEC_DTB := true
-#MR_DEVICE_HOOKS := device/xiaomi/ferrari/multirom/mr_hooks.c
-#MR_DEVICE_HOOKS_VER := 3
-MR_DEVICE_VARIANTS := MN5
-#DEVICE_RESOLUTION := 1080x1920
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-MR_DEV_BLOCK_BOOTDEVICE := true
+BOARD_MKBOOTIMG_ARGS += --board mrom$(shell date -u +%Y%m%d)-01
 
-# MultiROM configuration
-MR_DEVICE_HOOKS := $(DEVICE_PATH)/multirom/mr_hooks.c
-MR_DEVICE_HOOKS_VER := 6
-MR_DEVICE_BOOTDEVICE := /dev/block/platform/soc/c0c4000.sdhci
-MR_DPI := xhdpi
-MR_DPI_FONT := 370
-# MR_ENCRYPTION := true
-MR_ENCRYPTION_FAKE_PROPERTIES := true
-MR_ENCRYPTION_FAKE_PROPERTIES_EXTRAS := device/xiaomi/whyred/multirom/mr_fake_properties.c
-MR_ENCRYPTION_SETUP_SCRIPT := device/xiaomi/whyred/multirom/mr_cp_crypto.sh
-MR_FSTAB := device/xiaomi/whyred/recovery.fstab
-MR_INIT_DEVICES := device/xiaomi/whyred/multirom/mr_init_devices.c
-MR_FIRMWARE_DIR := "/vendor/firmware_mnt"
-MR_INPUT_TYPE := type_b
-MR_KEXEC_MEM_MIN := 0x86000000
-MR_NO_KEXEC := enabled
-MR_PIXEL_FORMAT := "RGBX_8888"
-MR_UNIFIED_TABS := true
-MR_USE_MROM_FSTAB := true
-MR_EXTRA_FIRMWARE_DIR := "/mrom_enc/vendor/firmware"
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-DEVICE_RESOLUTION := 1080x2160
-TARGET_RECOVERY_IS_MULTIROM := true
-MR_DEVICE_HAS_VENDOR_PARTITION := true
-MR_DEVICE_HAS_DRM_GRAPHICS := true
-MR_CUSTOM_FORBIDDEN_PARTITIONS := device/xiaomi/whyred/multirom/mr_forbidden_partitions.cpp
